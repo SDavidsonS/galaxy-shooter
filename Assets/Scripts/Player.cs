@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float Speed = 1.0f;
+    public float speed = 1.0f;
+    public GameObject tiro;
+    public Transform offsetTiro;
+    private float nextFire = 0.0f;
+    public float fireRate = 0.25f;
+    public int tirosPorRajada = 3;
+    private float proximaRajada = 0;
+    public float intervalaRajadas = 0.5f;
+    private int totalTiros = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +23,39 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Movimentacao();
+
+        LimiteDeTela();
+        Atirar();
+    }
+
+    private void Movimentacao()
+    {
         var moveY = Input.GetAxis("Horizontal");
         var moveX = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.up * Speed * Time.deltaTime * moveX);
-        transform.Translate(Vector3.right * Speed * Time.deltaTime * moveY);
+        transform.Translate(Vector3.up * speed * Time.deltaTime * moveX);
+        transform.Translate(Vector3.right * speed * Time.deltaTime * moveY);
+    }
 
+    private void Atirar()
+    {
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire && Time.time > proximaRajada)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(tiro, offsetTiro.position, Quaternion.identity);
+
+            totalTiros = totalTiros + 1; //totalTiros++
+
+            if (totalTiros == tirosPorRajada)
+            {
+                proximaRajada = Time.time + intervalaRajadas;
+                totalTiros = 0;
+            }
+        }
+    }
+
+    private void LimiteDeTela()
+    {
         if (transform.position.x > 8.858218f)
 
         {
@@ -48,6 +84,5 @@ public class Player : MonoBehaviour
             newposition.y = -3.715358f;
             transform.position = newposition;
         }
-        
     }
 }
