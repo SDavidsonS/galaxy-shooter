@@ -56,32 +56,32 @@ public class Player : MonoBehaviour
 
     private void LimiteDeTela()
     {
-        if (transform.position.x > 8.858218f)
+        if (transform.position.x > 9.267984f)
 
         {
             var newposition = transform.position;
-            newposition.x = 8.858218f;
+            newposition.x = 9.267984f;
             transform.position = newposition;
         }
 
-        if (transform.position.y > 5.724001f)
+        if (transform.position.y > 5.992391f)
         {
             var newposition = transform.position;
-            newposition.y = 5.724001f;
+            newposition.y = 5.992391f;
             transform.position = newposition;
         }
 
-        if (transform.position.x < -8.773135f)
+        if (transform.position.x < -9.267984f)
         {
             var newpositon = transform.position;
-            newpositon.x = -8.773135f;
+            newpositon.x = -9.267984f;
             transform.position = newpositon;
         }
 
-        if (transform.position.y < -3.715358f)
+        if (transform.position.y < -4.045644f)
         {
             var newposition = transform.position;
-            newposition.y = -3.715358f;
+            newposition.y = -4.045644f;
             transform.position = newposition;
         }
     }
