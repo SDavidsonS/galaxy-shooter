@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movimentacao();
-
         LimiteDeTela();
         Atirar();
     }
@@ -57,7 +56,6 @@ public class Player : MonoBehaviour
     private void LimiteDeTela()
     {
         if (transform.position.x > 9.267984f)
-
         {
             var newposition = transform.position;
             newposition.x = 9.267984f;
