@@ -10,7 +10,7 @@ public class inimigo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
     // Update is called once per frame
@@ -35,4 +35,20 @@ public class inimigo : MonoBehaviour
             transform.position = newPosition;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Tiro"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject , Time.deltaTime);
+        }
+    }
 }
+
+
